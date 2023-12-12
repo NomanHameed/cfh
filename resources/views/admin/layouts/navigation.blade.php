@@ -5,10 +5,11 @@
         </button>
     </div>
     <div class="navbar-brand flex-1 flex-lg-0">
-        <a href="index.html" class="d-inline-flex align-items-center">
-            <img src="https://demo.interface.club/limitless/demo/template/assets/images/logo_icon.svg" alt="">
-            <img src="https://demo.interface.club/limitless/demo/template/assets/images/logo_text_light.svg" class="d-none d-sm-inline-block h-16px ms-3" alt="">
-        </a>
+
+            <a href="{{ route('dashboard') }}" >
+                CFH
+            </a>
+
     </div>
     <ul class="nav flex-row">
         <li class="nav-item d-lg-none">
@@ -135,9 +136,9 @@
                 </a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <a 
-                        href="{{ route('logout') }}" 
-                        class="dropdown-item" 
+                    <a
+                        href="{{ route('logout') }}"
+                        class="dropdown-item"
                         onclick="event.preventDefault(); this.closest('form').submit();">
                         <i class="ph-sign-out me-2"></i>
                         Logout
