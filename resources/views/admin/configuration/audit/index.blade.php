@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Audit')
 
@@ -48,7 +48,7 @@
                                 <span class="badge bg-warning rounded-pill">{{ $status }}</span>
                             @endif
                         </td>
-                        <td class="text-center">@include('configuration.audit.actions')</td>
+                        <td class="text-center">@include('admin.configuration.audit.actions')</td>
                     </tr>
                 @endforeach
             </tbody>

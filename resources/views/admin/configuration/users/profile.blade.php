@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Profile')
 
@@ -110,9 +110,9 @@
                     required: function(){if (oldpassword.val().length != 0) {return true}else{return false}},
                     minlength:8,
                     maxlength:15
-                },    
+                },
                 confirm_password:{
-                    required: function(){if (password.val().length != 0) {return true}else{return false}}, 
+                    required: function(){if (password.val().length != 0) {return true}else{return false}},
                     equalTo: "#new_password"
                 },
                 email:{

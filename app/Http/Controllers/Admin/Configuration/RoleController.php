@@ -31,7 +31,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $roles = Role::get();
-        return view('configuration.roles.index',compact('roles'));
+        return view('admin.configuration.roles.index',compact('roles'));
     }
 
     /**
@@ -47,7 +47,7 @@ class RoleController extends Controller
             $title = explode('-', $permission->name);
             $permissionGroup[$title[0]][] = array('id' => $permission->id, 'name' => $title[1]);
         }
-        return view('configuration.roles.create',compact('role','permissionGroup'));
+        return view('admin.configuration.roles.create',compact('role','permissionGroup'));
     }
 
     /**
@@ -83,7 +83,7 @@ class RoleController extends Controller
             $permissionGroup[$title[0]][] = array('id' => $permission->id, 'name' => $title[1],'exist' => $exist);
         }
 
-        return view('configuration.roles.show',compact('role','permissionGroup'));
+        return view('admin.configuration.roles.show',compact('role','permissionGroup'));
     }
 
     /**
@@ -101,7 +101,7 @@ class RoleController extends Controller
             $title = explode('-', $permission->name);
             $permissionGroup[$title[0]][] = array('id' => $permission->id, 'name' => $title[1],'exist' => $exist);
         }
-        return view('configuration.roles.edit',compact('role','permissionGroup'));
+        return view('admin.configuration.roles.edit',compact('role','permissionGroup'));
     }
 
     /**

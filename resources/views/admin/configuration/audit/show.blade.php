@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Show Audit')
 
@@ -56,7 +56,7 @@
                                         <td class="card-title">Model</td>
                                         <td>{{ $audit->auditable_type }}</td>
                                     </tr>
-                                   
+
                                     <tr>
                                         <td class="card-title">Auditable ID</td>
                                         <td>{{ $audit->auditable_id }}</td>

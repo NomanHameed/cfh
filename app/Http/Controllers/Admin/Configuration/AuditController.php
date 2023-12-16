@@ -29,7 +29,7 @@ class AuditController extends Controller
     {
         $audits = Audit::with('user')->orderBy('created_at', 'desc')->get();
 
-	    return view('configuration.audit.index', compact('audits'));
+	    return view('admin.configuration.audit.index', compact('audits'));
     }
 
     /**
@@ -42,7 +42,7 @@ class AuditController extends Controller
     {
         $audit = Audit::find($id);
 
-        return view('configuration.audit.show', compact('audit'));
+        return view('admin.configuration.audit.show', compact('audit'));
     }
 
     /**

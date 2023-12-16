@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title')
     {{ $role->name ?? 'Show Role' }}
@@ -51,11 +51,11 @@
                                         @foreach($permissions as $permission)
                                         <div class="col-md-6">
                                             <label class="form-check mb-2">
-                                                <input 
-                                                    type="checkbox" 
-                                                    class="form-check-input form-check-input-secondary" 
-                                                    name="permission[]" 
-                                                    value="{{ $permission['id'] }}" 
+                                                <input
+                                                    type="checkbox"
+                                                    class="form-check-input form-check-input-secondary"
+                                                    name="permission[]"
+                                                    value="{{ $permission['id'] }}"
                                                     @if(isset($permission['exist'])) {{ $permission['exist'] }} @endif>
                                                 <span class="form-check-label">{{ ucfirst($permission['name']) }}</span>
                                             </label>

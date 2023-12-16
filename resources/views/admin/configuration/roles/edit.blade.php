@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Update Role')
 
@@ -32,7 +32,7 @@
             <form method="POST" action="{{ route('roles.update', $role->id) }}" class="validate" role="form" enctype="multipart/form-data">
                 {{ method_field('PATCH') }}
                 @csrf
-                @include('configuration.roles.form')
+                @include('admin.configuration.roles.form')
             </form>
         </div>
     </div>

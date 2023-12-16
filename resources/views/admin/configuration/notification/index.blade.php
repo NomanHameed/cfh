@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Notifications')
 
@@ -43,7 +43,7 @@
                         <td><dt>{{ $notification->data['message'] }}</dt></td>
                         <td><dt>{{ $notification->created_at->diffForHumans()}}</dt></td>
                         @endif
-                        <td class="text-center">@include('configuration.audit.actions')</td>
+                        <td class="text-center">@include('admin.configuration.audit.actions')</td>
                     </tr>
                 @endforeach
             </tbody>

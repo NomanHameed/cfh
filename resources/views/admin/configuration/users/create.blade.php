@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Create User')
 
@@ -31,7 +31,7 @@
         <div class="card-body">
             <form method="POST" action="{{ route('users.store') }}" class="validate" role="form" enctype="multipart/form-data">
                 @csrf
-                @include('configuration.users.form')
+                @include('admin.configuration.users.form')
             </form>
         </div>
     </div>
@@ -73,7 +73,7 @@
                     required: true,
                     minlength:8,
                     maxlength:15
-                },    
+                },
                 confirm_password:{
                     required: true,
                     equalTo: "#password"

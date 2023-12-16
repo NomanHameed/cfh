@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Edit User')
 
@@ -75,7 +75,7 @@
                     required: false,
                     minlength:8,
                     maxlength:15
-                },    
+                },
                 confirm_password:{
                     required: false,
                     equalTo: "#password"

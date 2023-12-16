@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('title','Create Role')
 
@@ -31,7 +31,7 @@
         <div class="card-body">
             <form method="POST" action="{{ route('roles.store') }}" class="validate" role="form" enctype="multipart/form-data">
                 @csrf
-                @include('configuration.roles.form')
+                @include('admin.configuration.roles.form')
             </form>
         </div>
     </div>
