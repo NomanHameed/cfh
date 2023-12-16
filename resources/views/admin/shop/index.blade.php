@@ -51,7 +51,7 @@
 					<td>{{ $shop->owner_name }}</td>
 					<td>{{ $shop->mobile_number }}</td>
 					<td>{{ $shop->creator?->name }}</td>
-                    <td class="text-center">@include('admin.selling.payment.actions')</td>
+                    <td class="text-center">@include('admin.shop.actions')</td>
                 </tr>
             @endforeach
             </tbody>

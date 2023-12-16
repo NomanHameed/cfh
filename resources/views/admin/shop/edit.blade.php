@@ -34,7 +34,7 @@
             <form method="POST" action="{{ route('shops.update', $shop->id) }}" class="validate"   role="form" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('PATCH') }}
-                @include('shop.form')
+                @include('admin.shop.form')
             </form>
         </div>
     </div>
