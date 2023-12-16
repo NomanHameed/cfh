@@ -2,6 +2,7 @@
 
 
 use App\Models\Setting;
+use Ramsey\Uuid\Type\Integer;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
 
@@ -53,5 +54,17 @@ function getCustomerLastBalance($customer)
     if ($curentRecord) {
         $lastBalnce = $customer->details()->where('id','!=',$curentRecord->id)->orderBy('id','DESC')->first();
     }
-    return $lastBalnce ? $lastBalnce->balance : 0;
+
+    return ($lastBalnce && $lastBalnce->balance > 0) ? $lastBalnce->balance : 0;
+}
+
+
+function amountPayable($amount, $customer){
+
+    $previous = getCustomerLastBalance($customer);
+    if($previous > 0){
+        $payable = $amount + $previous;
+        return $payable;
+    }
+    return $amount;
 }
