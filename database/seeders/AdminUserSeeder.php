@@ -20,8 +20,8 @@ class AdminUserSeeder extends Seeder
     {
         $user = User::create([
             'name'      	=> 'Super Admin',
-            'email'     	=> 'superadmin@gmail.com',
-            'password'  	=> 'password',
+            'email'     	=> 'nomanbutt8322@gmail.com',
+            'password'  	=> 'Noman@8322',
         ]);
 
         $role = Role::create(['name' => 'Super Admin','guard_name' => 'web']);
