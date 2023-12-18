@@ -51,11 +51,15 @@ function getAmount($item , $qty, $rate)
 function getCustomerLastBalance($customer)
 {
     $curentRecord = $customer->details()->orderBy('id','DESC')->first();
+    $lastBalnce = null;
     if ($curentRecord) {
         $lastBalnce = $customer->details()->where('id','!=',$curentRecord->id)->orderBy('id','DESC')->first();
     }
 
-    return ($lastBalnce && $lastBalnce->balance > 0) ? $lastBalnce->balance : 0;
+    if($lastBalnce){
+        return ($lastBalnce->balance > 0) ? $lastBalnce->balance : 0;
+    }
+    return 0;
 }
 
 

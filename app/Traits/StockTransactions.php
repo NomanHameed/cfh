@@ -111,6 +111,27 @@ trait StockTransactions
         }
     }
 
+    public function saleStockOutSimple($invoice) {
+        foreach ($invoice->invoiceItems as $invoice_item) {
+
+            if($invoice_item){
+                SaleDetail::create([
+                    'sale_item_id' => $invoice_item->sale_item_id,
+                    'type' => 'Out',
+                    'date' => Carbon::now(),
+                    'quantity' => $invoice_item->quantity
+                ]);
+                $checkItem = SaleStock::where('sale_item_id', $invoice_item->sale_item_id)->first();
+                if ($checkItem) {
+                    $checkItem->increment('quantity', $invoice_item->quantity);
+                } else {
+                    SaleStock::create([
+                        'sale_item_id' => $invoice_item->sale_item_id, 'quantity' => $invoice_item->quantity
+                    ]);
+                }
+            }
+        }
+    }
     /**
      * Update the specified resource in storage.
      *
