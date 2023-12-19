@@ -121,7 +121,7 @@
 <script>
     $(function(){
 
-        // $(".select").select2();
+        $("#product_id").select2();
         $('.validate').validate({
             errorClass: 'validation-invalid-label',
             successClass: 'validation-valid-label',
