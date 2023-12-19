@@ -27,7 +27,7 @@
             <img style="height: 100px; width:100px;" src="{{ url('images/CFH_LOGO.png')}}" alt="">
         </div>
         <div class="col-6">
-            <p class="text my-0">For Home Delivery</p>
+            <p class="my-0 fontsm">For Home Delivery</p>
             <p class="my-0 fontsm">0322-6220-365</p>
             <p class="my-0 fontsm">0303-7417-107</p>
             <p class="my-0 fontsm">0337-7014-867</p>

@@ -1,9 +1,6 @@
 @foreach ($groups as $group)
     <div class="tab-pane fade pt-3 {{ $loop->first ? 'active show' : '' }}"
         id="{{ $group->title }}-tab{{ $group->id }}" role="tabpanel">
-
-
-
         <form method="POST" action="{{ route('settings.save') }}" class="form-horizontal form-bordered" role="form"
             enctype="multipart/form-data">
             @csrf

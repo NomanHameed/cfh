@@ -65,30 +65,39 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'customer_id'=> 'required'
         ]);
-        if( $request->hasFile('moreFields') )
+        if($request->filled('moreFields')){
         try {
-            DB::beginTransaction();
-            $data = $request->all();
 
 
-            $data['payment'] = ($request->has('payment')) ? $request->payment : 0;
+                DB::beginTransaction();
 
-            $invoice = Invoice::create($data);
+                $data = $request->all();
 
-            $items = $data['moreFields'];
-            foreach ($items as $item) {
 
-                $invoice->invoiceItems()->create(['sale_item_id' => $item['product_id'], 'quantity' => $item['quantity'], 'rate' => $item['rate']]);
-            }
-            DB::commit();
+                $data['payment'] = ($request->has('payment')) ? $request->payment : 0;
+
+                $invoice = Invoice::create($data);
+
+                $items = $data['moreFields'];
+                foreach ($items as $item) {
+
+                    $invoice->invoiceItems()->create(['sale_item_id' => $item['product_id'], 'quantity' => $item['quantity'], 'rate' => $item['rate']]);
+                }
+                DB::commit();
+
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }else{
+        return redirect()->back()
+            ->with('error', 'Please Select Product.');
+    }
 
         return redirect()->route('invoices.index')
             ->with('success', 'Invoice created successfully.');
