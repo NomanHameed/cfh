@@ -32,7 +32,7 @@ class VendorController extends Controller
      */
     public function index()
     {
-        $vendors = Vendor::get();
+        $vendors = Vendor::orderBy('name')->get();
 
         return view('admin.purchasing.vendor.index', compact('vendors'));
     }

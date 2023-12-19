@@ -33,7 +33,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::get();
+        $customers = Customer::orderByDesc('id')->get();
 
         return view('admin.selling.customer.index', compact('customers'));
     }

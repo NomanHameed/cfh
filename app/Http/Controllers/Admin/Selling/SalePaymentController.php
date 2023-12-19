@@ -34,7 +34,7 @@ class SalePaymentController extends Controller
      */
     public function index()
     {
-        $salePayments = SalePayment::with('customer')->get();
+        $salePayments = SalePayment::with('customer')->orderByDesc('id')->get();
 
         return view('admin.selling.payment.index', compact('salePayments'));
     }

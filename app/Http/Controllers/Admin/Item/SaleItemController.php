@@ -33,7 +33,7 @@ class SaleItemController extends Controller
      */
     public function index()
     {
-        $saleItems = SaleItem::get();
+        $saleItems = SaleItem::orderBy('name')->get();
 
         return view('admin.item.sale.index', compact('saleItems'));
     }

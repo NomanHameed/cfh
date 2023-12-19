@@ -32,7 +32,7 @@ class PurchaseItemController extends Controller
      */
     public function index()
     {
-        $purchaseItems = PurchaseItem::with('unit')->get();
+        $purchaseItems = PurchaseItem::with('unit')->orderBy('name')->get();
 
         return view('admin.item.purchase.index', compact('purchaseItems'));
     }

@@ -40,7 +40,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::get();
+        $invoices = Invoice::orderByDesc('id')->get();
 
         return view('admin.selling.invoice.index', compact('invoices'));
     }
