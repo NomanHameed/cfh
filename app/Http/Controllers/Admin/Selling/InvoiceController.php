@@ -78,7 +78,7 @@ class InvoiceController extends Controller
                 $data = $request->all();
 
 
-                $data['payment'] = ($request->has('payment')) ? $request->payment : 0;
+                $data['payment'] = ($request->filled('payment')) ? $request->payment : 0;
 
                 $invoice = Invoice::create($data);
 
