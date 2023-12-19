@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>@include('admin.layouts.head')</head>
+<head>
+    @include('admin.layouts.head')
+    @stack('scripts')
+</head>
 <body>
 <div class="navbar navbar-dark navbar-expand-lg navbar-static border-bottom border-bottom-white border-opacity-10">
     @include('admin.layouts.navigation')

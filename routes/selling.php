@@ -13,11 +13,12 @@ Route::controller(CustomerController::class)->prefix('customers')->as('customers
 	Route::post('store',			 'store'  )->name('store'	);
 	Route::get('show/{id}',			 'show'	  )->name('show'	);
 	Route::get('edit/{id}',			 'edit'	  )->name('edit'	);
-	Route::patch('update/{customer}', 'update' )->name('update'	);
+	Route::patch('update/{customer}','update' )->name('update'	);
 	Route::delete('delete/{id}',	 'destroy')->name('destroy'	);
     Route::get('export',			 'export' )->name('export'	);
     Route::get('importview',	     'importview')->name('importview');
     Route::post('import',			 'import' )->name('import'	);
+    Route::get('search',    'search'  )->name('search'	);
 });
 /*
 |--------------------------------------------------------------------------

@@ -38,6 +38,25 @@ class CustomerController extends Controller
         return view('admin.selling.customer.index', compact('customers'));
     }
 
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        // $customers = Customer::where('name','LIKE','%'.$string)->get();
+        $parameter = $request->q;
+        $page      = $request->page;
+        $customers     = Customer::where('name', 'LIKE', '%' . $parameter . '%')
+                    ->orWhere('email', 'LIKE', '%' . $parameter . '%')
+                    ->orWhere('phone', 'LIKE', '%' . $parameter . '%')
+                    ->paginate(10, ['*'], 'page', $page)->toArray();
+        return $customers;
+
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

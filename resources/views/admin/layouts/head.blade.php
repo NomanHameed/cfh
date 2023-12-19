@@ -31,7 +31,7 @@
 
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script src="{{ asset('assets/demo/pages/datatables_basic.js') }}"></script>
-<!-- <script src="{{ asset('assets/demo/pages/form_select2.js') }}"></script> -->
+{{-- <script src="{{ asset('assets/demo/pages/form_select2.js') }}"></script>  --}}
 <script src="{{ asset('assets/demo/pages/dashboard.js') }}"></script>
 <script src="{{ asset('assets/demo/pages/picker_date.js') }}"></script>
 <!-- <script src="{{ asset('assets/demo/charts/pages/dashboard/streamgraph.js') }}"></script> -->

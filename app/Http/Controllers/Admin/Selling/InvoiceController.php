@@ -65,14 +65,18 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'customer_id'=> 'required'
+        ]);
+        if( $request->hasFile('moreFields') )
         try {
             DB::beginTransaction();
             $data = $request->all();
 
-            $data['payment'] = ($request->has('payment')) ?? 0;
+
+            $data['payment'] = ($request->has('payment')) ? $request->payment : 0;
 
             $invoice = Invoice::create($data);
-
 
             $items = $data['moreFields'];
             foreach ($items as $item) {
@@ -111,9 +115,11 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        $invoice = Invoice::find($id);
+        $invoice = Invoice::with('InvoiceItems', 'InvoiceItems.saleItem')->find($id);
+        $products = SaleItem::all();
 
-        return view('admin.selling.invoice.edit', compact('invoice'));
+        dd($invoice);
+        return view('admin.selling.invoice.edit', compact(['invoice','products']));
     }
 
     /**
