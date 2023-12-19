@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Item;
 use App\Http\Controllers\Controller;
 use App\Models\SaleItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 /**
  * Class SaleItemController
@@ -113,5 +114,53 @@ class SaleItemController extends Controller
 
         return redirect()->route('sale-items.index')
             ->with('success', 'SaleItem deleted successfully');
+    }
+    public function importview()
+    {
+        return view('admin.item.sale.import');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        $fileContents = file($file->getPathname());
+
+        foreach ($fileContents as $key => $line) {
+            if($key != 0){
+                $data = str_getcsv($line);
+
+                SaleItem::create([
+                    'name' => $data[0],
+                    'measurment_unit_id' => $data[1],
+                    'price' => $data[2],
+                    'status' => $data[3],
+                    // Add more fields as needed
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'CSV file imported successfully.');
+
+    }
+
+    public function export() {
+
+        $products = SaleItem::all();
+        $csvFileName = 'products.csv';
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $csvFileName . '"',
+        ];
+
+        $handle = fopen('php://output', 'w');
+        fputcsv($handle, ['Name', 'Unit', 'Price', 'Status']); // Add more headers as needed
+
+        foreach ($products as $product) {
+            fputcsv($handle, [$product->name, $product->measurment_unit_id, $product->price, $product->status]); // Add more fields as needed
+        }
+
+        fclose($handle);
+
+        return Response::make('', 200, $headers);
     }
 }

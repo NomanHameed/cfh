@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Selling;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 /**
  * Class CustomerController
@@ -113,5 +114,52 @@ class CustomerController extends Controller
 
         return redirect()->route('customers.index')
             ->with('success', 'Customer deleted successfully');
+    }
+
+    public function importview()
+    {
+        return view('admin.selling.customer.import');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        $fileContents = file($file->getPathname());
+
+        foreach ($fileContents as $key => $line) {
+            if($key != 0){
+                $data = str_getcsv($line);
+
+                Customer::create([
+                    'name' => $data[0],
+                    'phone' => $data[1],
+                    'address' => $data[2],
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'CSV file imported successfully.');
+
+    }
+
+    public function export() {
+
+        $customers = Customer::all();
+        $csvFileName = 'customers.csv';
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $csvFileName . '"',
+        ];
+
+        $handle = fopen('php://output', 'w');
+        fputcsv($handle, ['Name', 'phone', 'Address']); // Add more headers as needed
+
+        foreach ($customers as $customer) {
+            fputcsv($handle, [$customer->name, $customer->phone, $customer->address]); // Add more fields as needed
+        }
+
+        fclose($handle);
+
+        return Response::make('', 200, $headers);
     }
 }

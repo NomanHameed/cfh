@@ -14,7 +14,19 @@ Route::resource('purchase-items', 'PurchaseItemController')->names('purchase-ite
 | Sale Items Route
 |--------------------------------------------------------------------------
 */
-Route::resource('sale-items', 'SaleItemController')->names('sale-items');
+Route::controller(SaleItemController::class)->prefix('sale-items')->as('sale-items.')->group(function () {
+    Route::get('index',				 'index'  )->name('index'	);
+    Route::get('create',			 'create' )->name('create'	);
+    Route::post('store',			 'store'  )->name('store'	);
+    Route::get('show/{id}',			 'show'	  )->name('show'	);
+    Route::get('edit/{id}',			 'edit'	  )->name('edit'	);
+    Route::patch('update/{saleItem}','update' )->name('update'	);
+    Route::delete('delete/{id}',	 'destroy')->name('destroy'	);
+    Route::get('export',			 'export' )->name('export'	);
+    Route::get('importview',	     'importview')->name('importview');
+    Route::post('import',			 'import' )->name('import'	);
+
+});
 
 /*
 |--------------------------------------------------------------------------

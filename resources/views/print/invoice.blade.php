@@ -24,18 +24,23 @@
 <div id="main mb-5">
     <div class="row justify-content-center">
         <div class="col-6">
-            <img style="height: 150px; width:150px;" src="{{ url('images/CFH_LOGO.png')}}" alt="">
+            <img style="height: 100px; width:100px;" src="{{ url('images/CFH_LOGO.png')}}" alt="">
         </div>
         <div class="col-6">
-            <p class="text my-0">Contact / Order</p>
-            <p class="my-0">0322-6220-365</p>
-            <p class="my-0">0303-7417-107</p>
-            <p class="my-0">0337-7014-867</p>
-            <p class="my-0">0322-8691-102</p>
+            <p class="text my-0">For Home Delivery</p>
+            <p class="my-0 fontsm">0322-6220-365</p>
+            <p class="my-0 fontsm">0303-7417-107</p>
+            <p class="my-0 fontsm">0337-7014-867</p>
+            <p class="my-0 fontsm">0322-8691-102</p>
         </div>
     </div>
     <div class="row">
         <div class="col-5">
+            <div class="row m-0">
+                <div class="col-12">
+                    <strong><p class="text-center fontsm">Customer Details</p></strong>
+                </div>
+            </div>
             <p class="m-0 add"><small>
                 {{ ($invoice->customer->name) ? $invoice->customer->name : 'Walking Customer'  }}
                 </small>
@@ -85,7 +90,7 @@
                 <th class="col-sm-1 fontsm">SR</th>
                 <th class="col-sm-8 fontsm">Product Name</th>
                 <th class="col-sm-2 fontsm">Unit</th>
-                <th class="col-sm-1 fontsm">Qnty</th>
+                <th class="col-sm-1 fontsm">Qty</th>
                 <th class="col-sm-1 fontsm">Rate</th>
                 <th class="col-sm-1 fontsm">Amt</th>
             </div>
@@ -103,7 +108,7 @@
             @endforeach
 
             <tr>
-                <td colspan="5" class="text-end"><strong>Total:</strong></td>
+                <td colspan="5" class="text-end"><strong>Total Amount:</strong></td>
                 <td><strong>{{ $invoice->calculateTotalAmount() }}</strong></td>
             </tr>
 
@@ -120,12 +125,17 @@
             </tbody>
         </table>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="text-center fontsm">Rissalay wala Road, Gulshan Iqbal, Gawara Chowk, Faisalabad.</p>
+        </div>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-<script>
+<!-- <script>
     window.addEventListener("load", window.print());
-</script>
+</script> -->
 
 </body>
 </html>

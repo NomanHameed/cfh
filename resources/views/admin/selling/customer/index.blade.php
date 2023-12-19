@@ -23,6 +23,28 @@
         </div>
     </div>
     @endcan
+    @can('customers-delete')
+    <div class="d-lg-block my-lg-auto">
+        <div class="d-sm-flex align-items-center mb-3 mb-lg-0 ms-lg-3">
+            <a href="{{ route('customers.export') }}"class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
+                <span class="btn-labeled-icon bg-primary text-white rounded-pill">
+                    <i class="ph-export"></i>
+                </span>
+                Export CSV
+            </a>
+        </div>
+    </div>
+    <div class="d-lg-block my-lg-auto">
+        <div class="d-sm-flex align-items-center mb-3 mb-lg-0 ms-lg-3">
+            <a href="{{ route('customers.importview') }}"class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
+                <span class="btn-labeled-icon bg-primary text-white rounded-pill">
+                    <i class="ph-arrows-in"></i>
+                </span>
+                Import CSV
+            </a>
+        </div>
+    </div>
+    @endcan
 </div>
 @endsection
 
