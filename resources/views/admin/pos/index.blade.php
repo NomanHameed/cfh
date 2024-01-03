@@ -76,11 +76,11 @@
                 <table class="table table-bordered table-sm" id="order-table">
                     <thead>
                         <tr>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Amount</th>
-                            <th>Action</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
 
@@ -217,7 +217,7 @@
                 if (price && quantity) {
                     amount = parseFloat(quantity) * parseFloat(price);
                 }
-                $(element).closest('tr').find('.product-amount').text(amount.toFixed(2));
+                $(element).closest('tr').find('.product-amount').text(amount.toFixed(0));
             }
 
             updateTotal();
@@ -237,7 +237,7 @@
                 <tr id="product-item-${data.id}">
                     <td>
                         <input type="hidden" value="${data.id}" name="moreFields[${data.id}][product_id]"/>
-                        ${data.name}
+                        <small>${data.name}</small>
                     </td>
                     <td>
                         <input type="number" value="${data.quantity}" name="moreFields[${data.id}][quantity]" class="form-control product-quantity" min="0" step="0.1"/>
@@ -245,7 +245,7 @@
                     <td>
                         <input type="number" value="${data.price}" name="moreFields[${data.id}][rate]" class="form-control product-price" min="0"/>
                     </td>
-                    <td class="product-amount">${data.amount.toFixed(2)}</td>
+                    <td class="product-amount">${data.amount.toFixed(0)}</td>
                     <td>
                         <button type="button" class="btn btn-link text-danger remove-tr"><i class="ph-trash"></i></button>
                     </td>
