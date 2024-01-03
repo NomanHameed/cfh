@@ -39,10 +39,13 @@
                             @if (isset($product->image))
                                 <img src="{{ $product->image }}" alt="">
                             @else
-                                <h5 class="text-center word-break">
+                                <h6 class="text-center word-break m-0">
                                     {{ $product->name }}
-                                </h5>
+                                </h6>
                             @endif
+                        </div>
+                        <div class="card-footer p-0 text-center">
+                            Rs: {{ $product->price }}
                         </div>
                     </div>
 
@@ -136,7 +139,7 @@
 @section('script')
     <style>
         .product-items {
-            height: 120px;
+            height: 100px;
             cursor: pointer;
         }
     </style>
