@@ -237,7 +237,7 @@
                         ${data.name}
                     </td>
                     <td>
-                        <input type="number" value="${data.quantity}" name="moreFields[${data.id}][quantity]" class="form-control product-quantity" min="0" step="0.01"/>
+                        <input type="number" value="${data.quantity}" name="moreFields[${data.id}][quantity]" class="form-control product-quantity" min="0" step="0.1"/>
                     </td>
                     <td>
                         <input type="number" value="${data.price}" name="moreFields[${data.id}][rate]" class="form-control product-price" min="0"/>
