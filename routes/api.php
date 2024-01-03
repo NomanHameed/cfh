@@ -19,26 +19,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(MobileApiController::class)->group(function () {
-	/*
-	|--------------------------------------------------------------------------
-	| Wolfaram Routes
-	|--------------------------------------------------------------------------
-	| All route related to wolfarma api
-	*/
-	Route::group(['prefix' => 'token'], function (){
-    	Route::get('list',		'apiTokenList' );
-    	Route::post('edit',		'apiTokenUpdate' );
-    });
+// Route::controller(MobileApiController::class)->group(function () {
+// 	/*
+// 	|--------------------------------------------------------------------------
+// 	| Wolfaram Routes
+// 	|--------------------------------------------------------------------------
+// 	| All route related to wolfarma api
+// 	*/
+// 	Route::group(['prefix' => 'token'], function (){
+//     	Route::get('list',		'apiTokenList' );
+//     	Route::post('edit',		'apiTokenUpdate' );
+//     });
 
-	/*
-	|--------------------------------------------------------------------------
-	| Questionner Routes
-	|--------------------------------------------------------------------------
-	| All route related to Questionner api
-	*/
-	Route::group(['prefix' => 'questionner'], function (){
-    	Route::get('topics',		'topicList');
-    	Route::get('quizez/{id}',	'quizList' );
-    });
-});
+// 	/*
+// 	|--------------------------------------------------------------------------
+// 	| Questionner Routes
+// 	|--------------------------------------------------------------------------
+// 	| All route related to Questionner api
+// 	*/
+// 	Route::group(['prefix' => 'questionner'], function (){
+//     	Route::get('topics',		'topicList');
+//     	Route::get('quizez/{id}',	'quizList' );
+//     });
+// });

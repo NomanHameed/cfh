@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\POSController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,3 +79,10 @@ Route::prefix('banking')->namespace('Banking')->group(__DIR__.'/banking.php');
 |--------------------------------------------------------------------------
 */
 Route::prefix('configuration')->namespace('Configuration')->group(__DIR__.'/configuration.php');
+
+
+
+
+Route::controller(POSController::class)->prefix('pos')->as('pos.')->group(function () {
+	Route::get('/',				 'index'  )->name('index'	);
+});

@@ -67,10 +67,10 @@ class InvoiceController extends Controller
     {
 
         $this->validate($request, [
-            'customer_id'=> 'required'
+            'customer_id' => 'required'
         ]);
-        if($request->filled('moreFields')){
-        try {
+        if ($request->filled('moreFields')) {
+            try {
 
 
                 DB::beginTransaction();
@@ -79,8 +79,12 @@ class InvoiceController extends Controller
 
 
                 $data['payment'] = ($request->filled('payment')) ? $request->payment : 0;
+                $data['invoice_date'] = ($request->filled('invoice_date')) ? $request->invoice_date : now();
 
-                $invoice = Invoice::create($data);
+                $invoice = Invoice::updateOrCreate(['id' => $request->invoice_id], $data);
+                if ($request->has('invoice_id')) {
+                    InvoiceItem::where('invoice_id', $request->invoice_id)->delete();
+                }
 
                 $items = $data['moreFields'];
                 foreach ($items as $item) {
@@ -88,16 +92,15 @@ class InvoiceController extends Controller
                     $invoice->invoiceItems()->create(['sale_item_id' => $item['product_id'], 'quantity' => $item['quantity'], 'rate' => $item['rate']]);
                 }
                 DB::commit();
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-            Log::error($e->getMessage());
-            return response()->json(['error' => $e->getMessage()], 500);
+            } catch (\Exception $e) {
+                DB::rollBack();
+                Log::error($e->getMessage());
+                return response()->json(['error' => $e->getMessage()], 500);
+            }
+        } else {
+            return redirect()->back()
+                ->with('error', 'Please Select Product.');
         }
-    }else{
-        return redirect()->back()
-            ->with('error', 'Please Select Product.');
-    }
 
         return redirect()->route('invoices.index')
             ->with('success', 'Invoice created successfully.');
@@ -127,8 +130,8 @@ class InvoiceController extends Controller
         $invoice = Invoice::with('InvoiceItems', 'InvoiceItems.saleItem')->find($id);
         $products = SaleItem::all();
 
-        dd($invoice);
-        return view('admin.selling.invoice.edit', compact(['invoice','products']));
+        // dd($invoice);
+        return view('admin.pos.index', compact(['invoice', 'products']));
     }
 
     /**
