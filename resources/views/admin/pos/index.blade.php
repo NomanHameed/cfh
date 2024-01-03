@@ -15,7 +15,7 @@
 @endsection
 
 @section('content')
-    <div class="col-sm-8">
+    <div class="col-sm-7">
         <div class="form-group mb-3">
             <input type="text" class="form-control w-100" placeholder="Search Items" id="product-items-search">
         </div>
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-5">
         <form method="POST" action="{{ route('invoices.store') }}" class="validate" role="form"
             enctype="multipart/form-data">
             @csrf
@@ -115,7 +115,7 @@
 
                 <div class="card-footer d-sm-flex justify-content-sm-between align-items-sm-center py-sm-2">
                     <button type="reset" class="btn btn-light w-100 w-sm-auto">Reset</button>
-                    <button type="submit" class="btn btn-primary mt-3 mt-sm-0 w-100 w-sm-auto">Submit</button>
+                    <button type="submit" class="btn btn-primary mt-3 mt-sm-0 w-100 w-sm-auto submit-form">Submit</button>
                 </div>
 
             </div>
@@ -207,11 +207,15 @@
                 $(element).closest('tr').find('.product-amount').text(amount.toFixed(2));
             }
 
+            updateTotal();
             function updateTotal() {
                 let totalAmount = 0;
                 $('.product-amount').each((i, obj) => {
                     totalAmount += parseFloat($(obj).text());
                 });
+                const formButton = $('.submit-form');
+                totalAmount < 1 ? formButton.addClass('disabled') : formButton.removeClass('disabled');
+
                 $('#totalAmount').text(totalAmount);
             }
 
@@ -223,10 +227,10 @@
                         ${data.name}
                     </td>
                     <td>
-                        <input type="text" value="${data.quantity}" name="moreFields[${data.id}][quantity]" class="form-control product-quantity" />
+                        <input type="number" value="${data.quantity}" name="moreFields[${data.id}][quantity]" class="form-control product-quantity" min="0"/>
                     </td>
                     <td>
-                        <input type="text" value="${data.price}" name="moreFields[${data.id}][rate]" class="form-control product-price" />
+                        <input type="number" value="${data.price}" name="moreFields[${data.id}][rate]" class="form-control product-price" min="0"/>
                     </td>
                     <td class="product-amount">${data.amount.toFixed(2)}</td>
                     <td>
